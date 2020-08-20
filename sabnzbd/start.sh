@@ -47,7 +47,7 @@ fi
 # Start SABnzbd
 echo "[INFO] Starting SABnzbd daemon..." | ts '%Y-%m-%d %H:%M:%.S'
 /bin/bash /etc/sabnzbd/sabnzbd.init start &
-chmod -R 755 /config/sabnzbd
+chmod -R 755 /config/SABnzbd
 
 # Wait a second for it to start up and get the process id
 sleep 1
