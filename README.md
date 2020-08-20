@@ -107,4 +107,4 @@ Thanks to [Technikte](https://github.com/Technikte) in [Issue #19](https://githu
 If you are having issues with this container please submit an issue on GitHub.
 Please provide logs, docker version and other information that can simplify reproducing the issue.
 Using the latest stable verison of Docker is always recommended. Support for older version is on a best-effort basis.
-I personally do not use SABnzbd, thus providing support about the product is nearly impossible for me.
+**I personally do not use SABnzbd, thus providing support about the product is nearly impossible for me.**
