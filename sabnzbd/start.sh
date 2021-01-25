@@ -9,7 +9,7 @@ chown -R ${PUID}:${PGID} /config/SABnzbd
 # Set the rights on the /downloads folder
 chown -R ${PUID}:${PGID} /downloads
 
-# Check if ServerConfig.json exists, if not, copy the template over
+# Check if sabnzbd.ini exists, if not, copy the template over
 if [ ! -e /config/SABnzbd/sabnzbd.ini ]; then
 	echo "[WARNING] sabnzbd.ini is missing, this is normal for the first launch! Copying template." | ts '%Y-%m-%d %H:%M:%.S'
 	cp /etc/sabnzbd/sabnzbd.ini /config/SABnzbd/sabnzbd.ini
