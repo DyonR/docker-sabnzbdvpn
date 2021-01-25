@@ -89,7 +89,7 @@ id <username>
 ```
 
 # Issues
-If you are having issues with this container please submit an issue on GitHub.
-Please provide logs, docker version and other information that can simplify reproducing the issue.
-Using the latest stable verison of Docker is always recommended. Support for older version is on a best-effort basis.
+If you are having issues with this container please submit an issue on GitHub.  
+Please provide logs, Docker version and other information that can simplify reproducing the issue.  
+If possible, always use the most up to date version of Docker, you operating system, kernel and the container itself. Support is always a best-effort basis.  
 **I personally do not use SABnzbd, thus providing support about the product is nearly impossible for me.**
