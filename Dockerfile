@@ -7,27 +7,19 @@ RUN usermod -u 99 nobody
 # Make directories
 RUN mkdir -p /downloads /config/SABnzbd /etc/openvpn /etc/sabnzbd
 
-# Install SABnzbd and its dependencies
+# Install SABnzbd
 RUN echo "deb http://deb.debian.org/debian/ buster non-free" > /etc/apt/sources.list.d/non-free-unrar.list \
     && printf 'Package: *\nPin: release a=non-free\nPin-Priority: 150\n' > /etc/apt/preferences.d/limit-non-free \
     && apt update \
     && apt -y upgrade \
     && apt -y install --no-install-recommends \
-	ca-certificates \
-	curl \
-	jq \
-	libffi6 \
-	libpython3.7 \
-	libssl1.1 \
-	p7zip-full \
-	par2 \
-	python3 \
-	python3-pip \
-	python3-setuptools \
-	unrar \
-	unzip \
-	zip \
-    && SABNZBD_ASSETS=$(curl -sX GET "https://api.github.com/repos/sabnzbd/sabnzbd/releases" | jq '.[0] .assets_url' | tr -d '"') \
+    ca-certificates \
+    curl \
+    jq \
+    python3 \
+    python3-pip \
+    python3-setuptools \
+    && SABNZBD_ASSETS=$(curl -sX GET "https://api.github.com/repos/sabnzbd/sabnzbd/releases" | jq '.[] | select(.prerelease==false) | .assets_url' | head -n 1 | tr -d '"') \
     && SABNZBD_DOWNLOAD_URL=$(curl -sX GET ${SABNZBD_ASSETS} | jq '.[] | select(.name | contains("tar.gz")) .browser_download_url' | tr -d '"') \
     && SABNZBD_NAME=$(curl -sX GET ${SABNZBD_ASSETS} | jq '.[] | select(.name | contains("tar.gz")) .name' | tr -d '"') \
     && curl -o /opt/${SABNZBD_NAME} -L ${SABNZBD_DOWNLOAD_URL} \
@@ -47,6 +39,8 @@ RUN echo "deb http://deb.debian.org/debian/ buster non-free" > /etc/apt/sources.
 # Install WireGuard, OpenVPN and other dependencies for running the container scripts
 RUN echo "deb http://deb.debian.org/debian/ unstable main" > /etc/apt/sources.list.d/unstable-wireguard.list \ 
     && printf 'Package: *\nPin: release a=unstable\nPin-Priority: 150\n' > /etc/apt/preferences.d/limit-unstable \
+    && echo "deb http://deb.debian.org/debian/ buster non-free" > /etc/apt/sources.list.d/non-free-unrar.list \
+    && printf 'Package: *\nPin: release a=non-free\nPin-Priority: 150\n' > /etc/apt/preferences.d/limit-non-free \
     && apt update \
     && apt -y install --no-install-recommends \
     ca-certificates \
@@ -56,12 +50,20 @@ RUN echo "deb http://deb.debian.org/debian/ unstable main" > /etc/apt/sources.li
     ipcalc \
     iptables \
     kmod \
+    libffi6 \
+    libpython3.7 \
+    libssl1.1 \
     moreutils \
     net-tools \
     openresolv \
     openvpn \
+    p7zip-full \
+    par2 \
     procps \
+    unrar \
+    unzip \
     wireguard-tools \
+    zip \
     && apt-get clean \
     && apt -y autoremove \
     && rm -rf \
