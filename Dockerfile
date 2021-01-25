@@ -7,7 +7,7 @@ RUN usermod -u 99 nobody
 # Make directories
 RUN mkdir -p /downloads /config/SABnzbd /etc/openvpn /etc/sabnzbd
 
-# Install SABnzbd and its dependencies
+# Install SABnzbd
 RUN echo "deb http://deb.debian.org/debian/ buster non-free" > /etc/apt/sources.list.d/non-free-unrar.list \
     && printf 'Package: *\nPin: release a=non-free\nPin-Priority: 150\n' > /etc/apt/preferences.d/limit-non-free \
     && apt update \
