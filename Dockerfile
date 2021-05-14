@@ -60,7 +60,7 @@ RUN export PATH=/root/.cargo/bin:$PATH \
     && apt-get clean \
     && apt -y autoremove \
     && rm -rf \
-    /root/.carge \
+    /root/.cargo \
     /var/lib/apt/lists/* \
     /tmp/* \
     /var/tmp/*
