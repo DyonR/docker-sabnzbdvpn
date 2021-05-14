@@ -7,26 +7,8 @@ RUN usermod -u 99 nobody
 # Make directories
 RUN mkdir -p /downloads /config/SABnzbd /etc/openvpn /etc/sabnzbd
 
-# Install Rust
+# Install Rust and SABnzbd
 RUN apt update \
-    && apt -y upgrade \
-    && apt -y install --no-install-recommends \
-    ca-certificates \
-    curl \
-    && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y \
-    && apt -y purge \
-    curl \
-    ca-certificates \
-    && apt-get clean \
-    && apt -y autoremove \
-    && rm -rf \
-    /var/lib/apt/lists/* \
-    /tmp/* \
-    /var/tmp/*
-
-# Install SABnzbd
-RUN export PATH=/root/.cargo/bin:$PATH \
-    && apt update \
     && apt -y upgrade \
     && apt -y install --no-install-recommends \
     ca-certificates \
@@ -38,6 +20,8 @@ RUN export PATH=/root/.cargo/bin:$PATH \
     python3-dev \
     python3-pip \
     python3-setuptools \
+    && curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y \
+    && export PATH=/root/.cargo/bin:$PATH \
     && SABNZBD_ASSETS=$(curl -sX GET "https://api.github.com/repos/sabnzbd/sabnzbd/releases" | jq '.[] | select(.prerelease==false) | .assets_url' | head -n 1 | tr -d '"') \
     && SABNZBD_DOWNLOAD_URL=$(curl -sX GET ${SABNZBD_ASSETS} | jq '.[] | select(.name | contains("tar.gz")) .browser_download_url' | tr -d '"') \
     && SABNZBD_NAME=$(curl -sX GET ${SABNZBD_ASSETS} | jq '.[] | select(.name | contains("tar.gz")) .name' | tr -d '"') \
