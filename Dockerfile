@@ -1,4 +1,4 @@
-FROM debian:10-slim
+FROM debian:bullseye-slim
 
 WORKDIR /opt
 
@@ -52,7 +52,7 @@ RUN apt update \
 # Install WireGuard, OpenVPN and other dependencies for running the container scripts
 RUN echo "deb http://deb.debian.org/debian/ unstable main" > /etc/apt/sources.list.d/unstable-wireguard.list \ 
     && printf 'Package: *\nPin: release a=unstable\nPin-Priority: 150\n' > /etc/apt/preferences.d/limit-unstable \
-    && echo "deb http://deb.debian.org/debian/ buster non-free" > /etc/apt/sources.list.d/non-free-unrar.list \
+    && echo "deb http://deb.debian.org/debian/ bullseye non-free" > /etc/apt/sources.list.d/non-free-unrar.list \
     && printf 'Package: *\nPin: release a=non-free\nPin-Priority: 150\n' > /etc/apt/preferences.d/limit-non-free \
     && apt update \
     && apt -y install --no-install-recommends \
@@ -63,8 +63,8 @@ RUN echo "deb http://deb.debian.org/debian/ unstable main" > /etc/apt/sources.li
     ipcalc \
     iptables \
     kmod \
-    libffi6 \
-    libpython3.7 \
+    libffi7 \
+    libpython3.9 \
     libssl1.1 \
     moreutils \
     net-tools \
