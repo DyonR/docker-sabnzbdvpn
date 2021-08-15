@@ -5,7 +5,7 @@
 Docker container which runs the latest [SABnzbd](https://github.com/sabnzbd/SABnzbd) client while connecting to WireGuard or OpenVPN with iptables killswitch to prevent IP leakage when the tunnel goes down.
 
 ## Docker Features
-* Base: Debian 10-slim
+* Base: Debian bullseye-slim
 * [SABnzbd](https://github.com/sabnzbd/sabnzbd)
 * Selectively enable or disable WireGuard or OpenVPN support
 * IP tables killswitch to prevent IP leaking when VPN connection fails
