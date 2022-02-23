@@ -73,6 +73,7 @@ RUN echo "deb http://deb.debian.org/debian/ unstable main" > /etc/apt/sources.li
     p7zip-full \
     par2 \
     procps \
+    python3-setuptools \
     unrar \
     unzip \
     wireguard-tools \
