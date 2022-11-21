@@ -85,6 +85,9 @@ RUN echo "deb http://deb.debian.org/debian/ unstable main" > /etc/apt/sources.li
     /tmp/* \
     /var/tmp/*
 
+# Remove src_valid_mark from wg-quick
+RUN sed -i /net\.ipv4\.conf\.all\.src_valid_mark/d `which wg-quick`
+
 VOLUME /config /downloads
 
 ADD openvpn/ /etc/openvpn/
