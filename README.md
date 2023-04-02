@@ -1,3 +1,9 @@
+> # **Status notice**
+>
+> Due to loss in interest in maintaining Docker container, this project is no longer being worked on and no updates can be expected.
+
+---
+
 # [SABnzbd](https://github.com/sabnzbd/sabnzbd), WireGuard and OpenVPN
 [![Docker Pulls](https://img.shields.io/docker/pulls/dyonr/sabnzbdvpn)](https://hub.docker.com/r/dyonr/sabnzbdvpn)
 [![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dyonr/sabnzbdvpn/latest)](https://hub.docker.com/r/dyonr/sabnzbdvpn)
